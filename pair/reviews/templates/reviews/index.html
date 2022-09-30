@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<a href="{% url 'reviews:new' %}" class="btn btn-primary">리뷰 작성</a>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">리뷰 번호</th>
+      <th scope="col">리뷰 제목</th>
+      <th scope="col">리뷰 평점</th>
+      <th scope="col">작성 시간</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for review in reviews %}
+    <tr>
+      <th scope="row">{{ review.pk }}</th>
+      <td>{{ review.title }}</td>
+      <td>{{ review.star }}</td>
+      <td>{{ review.created_at|date:'Y년 m월 d일' }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<a href="{% url 'reviews:main' %}" class="btn btn-primary"><i class="bi bi-backspace"></i></a>
+{% endblock %}
